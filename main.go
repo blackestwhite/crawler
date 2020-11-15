@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	getch "github.com/blackestwhite/crawler/getch"
+	"github.com/blackestwhite/crawler/getch"
 )
 
 func main() {
