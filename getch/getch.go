@@ -14,7 +14,7 @@ func Get(element string, doc string) (map[int]string, error) {
 	for i, val := range submatchAll {
 		matches[i] = val[1]
 	}
-	if matches != nil {
+	if len(matches) > 0 {
 		return matches, nil
 	} else {
 		return nil, errors.New("No Matches Find!")
