@@ -2,20 +2,28 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
 
 	"github.com/blackestwhite/crawler/getch"
 )
 
 func main() {
-	theDoc := `<html><body>
-	<form name="query" action="http://www.example.net/action.php" method="post">
-		<textarea type="text" name="nameiknow">The text I want</textarea>
-		<div id="button">
-			<input type="submit" value="Submit" />
-			<a href="https://google.com">google</a>
-		</div>
-	</form>
-	</body></html>`
+
+	resp, err := http.Get("https://www.example.com")
+	if err != nil {
+		log.Fatal("Error getting response. ", err)
+	}
+	defer resp.Body.Close()
+
+	// Read body from response
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal("Error reading response. ", err)
+	}
+
+	theDoc := string(body[:])
 	res, err := getch.Get("textarea", theDoc)
 	if err != nil {
 		fmt.Println(err)
