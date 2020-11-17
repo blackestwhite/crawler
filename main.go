@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	resp, err := http.Get("https://www.example.com")
+	resp, err := http.Get("https://wikipedia.org")
 	if err != nil {
 		log.Fatal("Error getting response. ", err)
 	}
@@ -24,7 +24,7 @@ func main() {
 	}
 
 	theDoc := string(body[:])
-	res, err := getch.Get("textarea", theDoc)
+	res, err := getch.Get("a", theDoc)
 	if err != nil {
 		fmt.Println(err)
 	}
