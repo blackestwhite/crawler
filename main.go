@@ -24,13 +24,13 @@ func main() {
 	}
 
 	theDoc := string(body[:])
-	res, err := getch.Get("a", theDoc)
-	if err != nil {
-		fmt.Println(err)
-	}
-	for _, val := range res {
-		fmt.Println(val)
-	}
+	// res, err := getch.Get("a", theDoc)
+	// // if err != nil {
+	// // 	fmt.Println(err)
+	// // }
+	// // for _, val := range res {
+	// // 	fmt.Println(val)
+	// // }
 
 	links, err := getch.GetLinks(theDoc)
 	if err != nil {

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"regexp"
+	"strings"
 )
 
 func Get(element string, doc string) (map[int]string, error) {
@@ -27,7 +28,9 @@ func GetLinks(doc string) (map[int]string, error) {
 	submatchAll := re.FindAllStringSubmatch(doc, -1)
 	matches := make(map[int]string)
 	for i, val := range submatchAll {
-		matches[i] = val[1]
+		if strings.HasPrefix(val[1], "https") || strings.HasPrefix(val[1], "http") {
+			matches[i] = val[1]
+		}
 	}
 	if matches != nil {
 		return matches, nil
